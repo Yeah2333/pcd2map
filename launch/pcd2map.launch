@@ -1,0 +1,14 @@
+<launch>
+  	<include file="$(find pcd2map)/launch/octomap_server.launch"/>
+	  <!-- True for simulation, false for real-time and bagfiles -->	
+  	<param name="/use_sim_time" value="false"/>
+
+	<node pkg="pcd2map" type="pcd2map" name="pcd2map" output="screen" required="true">
+	  <param name="minh" type="double" value="-1.0" />
+	  <param name="maxh" type="double" value="1.0"/>
+	  <param name="pcd_file" type="str" value="/home/wangzhiyong/pcd/0.pcd"/>
+	</node>
+	
+  	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find pcd2map)/rviz/cloud2map.rviz" required="true" />
+
+</launch>
